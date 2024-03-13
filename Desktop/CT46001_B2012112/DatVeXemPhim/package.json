@@ -1,0 +1,19 @@
+{
+  "name": "datvexemphim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hoangly7702/Test_BookMovieTickets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hoangly7702/Test_BookMovieTickets/issues"
+  },
+  "homepage": "https://github.com/Hoangly7702/Test_BookMovieTickets#readme"
+}

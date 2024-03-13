@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_1hy6sp6" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <decision id="xuLyYeuCau" name="Xử lý yêu cầu">
+    <decisionTable id="DecisionTable_02v0qkr" hitPolicy="FIRST">
+      <input id="Input_1" label="Tên phim" biodi:width="302" camunda:inputVariable="TenPhim">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>TenPhim</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0z7ej5v">
+          <text>"Wonka","NCT NATION: Vươn Tầm Thế Giới","CONAN","Người Mặt Trời","Yêu Lại Vợ Ngầu","Cô Giáo Em Là Số 1"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1hrw5u5" label="Giờ chiếu" biodi:width="150" camunda:inputVariable="GioChieu">
+        <inputExpression id="LiteralExpression_08llidk" typeRef="string">
+          <text>GioChieu</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_16vtccx">
+          <text>"13","14","15","16","17","18","19","20"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0tybxib" label="Ngày chiếu" biodi:width="170" camunda:inputVariable="NgayChieu">
+        <inputExpression id="LiteralExpression_07ll8gi" typeRef="string">
+          <text></text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0rzz3wk">
+          <text>"T2","T3","T4","T5","T6","T7","CN"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1nj8jsx" label="Loại ghế" biodi:width="150" camunda:inputVariable="LoaiGhe">
+        <inputExpression id="LiteralExpression_09lmc24" typeRef="string">
+          <text>LoaiGhe</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0nf7onj">
+          <text>"VIP","Thường"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="Thông báo" typeRef="string" biodi:width="303" />
+      <rule id="DecisionRule_0hgqg2r">
+        <inputEntry id="UnaryTests_1s5wk44">
+          <text>"Wonka","NCT NATION: Vươn Tầm Thế Giới","CONAN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oi6mkv">
+          <text>"13","15"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03whsnp">
+          <text>"T2","T3","T4","T5","T6"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nuc74o">
+          <text>"VIP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jpbr32">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 60.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18jzace">
+        <inputEntry id="UnaryTests_0ifq8aw">
+          <text>"Wonka","NCT NATION: Vươn Tầm Thế Giới","CONAN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18lemz3">
+          <text>"13","15"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r5vx5e">
+          <text>"T7","CN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1chzcwz">
+          <text>"VIP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11stqt6">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 100.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1bw7l33">
+        <inputEntry id="UnaryTests_1t9ar1z">
+          <text>"Wonka","NCT NATION: Vươn Tầm Thế Giới","CONAN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qaxg8p">
+          <text>"13","15"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zrqo13">
+          <text>"T2","T3","T4","T5","T6"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yzq4pp">
+          <text>"Thường"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17n4ymx">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 40.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0urqdff">
+        <inputEntry id="UnaryTests_0p9247c">
+          <text>"Wonka","NCT NATION: Vươn Tầm Thế Giới","CONAN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0igipan">
+          <text>"13","15"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fzi1g3">
+          <text>"T7","CN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ac8skx">
+          <text>"Thường"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bqm342">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 80.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pjawzd">
+        <inputEntry id="UnaryTests_1f499yu">
+          <text>"Wonka","Người Mặt Trời","Yêu Lại Vợ Ngầu"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1n8duzi">
+          <text>"16","17"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07spqu2">
+          <text>"T2","T3","T4","T5","T6"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lk067q">
+          <text>"VIP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q7h25b">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 70.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xbp4rw">
+        <inputEntry id="UnaryTests_1r5w6lm">
+          <text>"Wonka","Người Mặt Trời","Yêu Lại Vợ Ngầu"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0knvfts">
+          <text>"16","17"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w8y1ej">
+          <text>"T7","CN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ydwcws">
+          <text>"VIP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1llzq54">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 110.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lfh4mu">
+        <inputEntry id="UnaryTests_0dk9itv">
+          <text>"Wonka","Người Mặt Trời","Yêu Lại Vợ Ngầu"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1a8hcym">
+          <text>"16","17"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rv8e8c">
+          <text>"T2","T3","T4","T5","T6"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uo9i94">
+          <text>"Thường"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0o9la9n">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 50.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rpxf7f">
+        <inputEntry id="UnaryTests_11a3jpg">
+          <text>"Wonka","Người Mặt Trời","Yêu Lại Vợ Ngầu"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z84n4u">
+          <text>"16","17"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jsk98p">
+          <text>"T7","CN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e6f3s7">
+          <text>"Thường"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03h7bk3">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 90.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1yiavka">
+        <inputEntry id="UnaryTests_1419ysm">
+          <text>"NCT NATION: Vươn Tầm Thế Giới","Người Mặt Trời","Yêu Lại Vợ Ngầu","Cô Giáo Em Là Số 1"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0if35m9">
+          <text>"14","18","20"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tx83w2">
+          <text>"T2","T3","T4","T5","T6"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wvy1ys">
+          <text>"VIP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08z94le">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 60.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1l4z3ue">
+        <inputEntry id="UnaryTests_1oopuif">
+          <text>"NCT NATION: Vươn Tầm Thế Giới","Người Mặt Trời","Yêu Lại Vợ Ngầu","Cô Giáo Em Là Số 1"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_023umbq">
+          <text>"14","18","20"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ayeodr">
+          <text>"T7","CN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_041gqs7">
+          <text>"VIP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_049o38d">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 100.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gc54lu">
+        <inputEntry id="UnaryTests_0843anx">
+          <text>"NCT NATION: Vươn Tầm Thế Giới","Người Mặt Trời","Yêu Lại Vợ Ngầu","Cô Giáo Em Là Số 1"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s77bv7">
+          <text>"14","18","20"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0arhf17">
+          <text>"T2","T3","T4","T5","T6"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05ymrgk">
+          <text>"Thường"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vij7gn">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 40.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rjjlim">
+        <inputEntry id="UnaryTests_13wds2v">
+          <text>"NCT NATION: Vươn Tầm Thế Giới","Người Mặt Trời","Yêu Lại Vợ Ngầu","Cô Giáo Em Là Số 1"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0737gxi">
+          <text>"14","18","20"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1smw0gu">
+          <text>"T7","CN"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15u445q">
+          <text>"Thường"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ltcw9e">
+          <text>"Bạn đã đặt vé xem phim thành công. Tổng hóa đơn của bạn là 80.000 VND"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00ghw4d">
+        <inputEntry id="UnaryTests_0a6nglg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fmzb3b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19so52o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11qxeeq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08rinte">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="xuLyYeuCau">
+        <dc:Bounds height="80" width="180" x="160" y="120" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

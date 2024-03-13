@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
+  <bpmn:process id="quytrinhdatvexemphim" name="QuyTrinhDatVeXemPhim" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1fp17al</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1fp17al" sourceRef="StartEvent_1" targetRef="yeuCauDatVe" />
+    <bpmn:userTask id="yeuCauDatVe" name="Yêu cầu đặt vé phim">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="TenPhim" label="Bạn muốn xem phim nào?" type="string" />
+          <camunda:formField id="GioChieu" label="Bạn muốn đặt vé xem phim lúc mấy giờ?" type="string" />
+          <camunda:formField id="LoaiGhe" label="Bạn muốn ngồi loại ghế nào?" type="string" />
+          <camunda:formField id="NgayChieu" label="Bạn muốn đặt vé vào thứ mấy?" type="string" />
+          <camunda:formField id="trangThaiVe" label="Nhận yêu cầu đặt vé" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1fp17al</bpmn:incoming>
+      <bpmn:outgoing>Flow_1hinohs</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1hinohs" sourceRef="yeuCauDatVe" targetRef="Gateway_057n7v0" />
+    <bpmn:exclusiveGateway id="Gateway_057n7v0">
+      <bpmn:incoming>Flow_1hinohs</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rtl7qd</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0g5kcge</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1rtl7qd" name="Còn vé" sourceRef="Gateway_057n7v0" targetRef="guiYeuCauDatVe">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"> ${trangThaiVe==true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0g5kcge" name="Hết vé" sourceRef="Gateway_057n7v0" targetRef="thongBaoThatBai">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"> ${trangThaiVe==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1uoaxhg" sourceRef="xuLyYeuCau" targetRef="ketQuaDatVePhim" />
+    <bpmn:endEvent id="Event_05haw9f">
+      <bpmn:incoming>Flow_0dczfv1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:businessRuleTask id="xuLyYeuCau" name="Xử lý yêu cầu" camunda:resultVariable="receipt" camunda:decisionRef="xuLyYeuCau" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_0lpzl04</bpmn:incoming>
+      <bpmn:outgoing>Flow_1uoaxhg</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:serviceTask id="ketQuaDatVePhim" name="Kết quả đặt vé phim" camunda:class="com.example.workflow.ketQuaDatVePhim">
+      <bpmn:incoming>Flow_1uoaxhg</bpmn:incoming>
+      <bpmn:outgoing>Flow_16q15fl</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="thongBaoThatBai" name="Thông báo đã hết vé" camunda:class="com.example.workflow.thongBaoThatBai">
+      <bpmn:incoming>Flow_0g5kcge</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dczfv1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0lpzl04" sourceRef="guiYeuCauDatVe" targetRef="xuLyYeuCau" />
+    <bpmn:sendTask id="guiYeuCauDatVe" name="Gửi yêu cầu đặt vé" camunda:class="com.example.workflow.guiYeuCauDatVe">
+      <bpmn:incoming>Flow_1rtl7qd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lpzl04</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="Event_1pn5usl">
+      <bpmn:incoming>Flow_16q15fl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0dczfv1" sourceRef="thongBaoThatBai" targetRef="Event_05haw9f" />
+    <bpmn:sequenceFlow id="Flow_16q15fl" sourceRef="ketQuaDatVePhim" targetRef="Event_1pn5usl" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="quytrinhdatvexemphim">
+      <bpmndi:BPMNEdge id="Flow_1uoaxhg_di" bpmnElement="Flow_1uoaxhg">
+        <di:waypoint x="760" y="280" />
+        <di:waypoint x="840" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g5kcge_di" bpmnElement="Flow_0g5kcge">
+        <di:waypoint x="440" y="155" />
+        <di:waypoint x="440" y="90" />
+        <di:waypoint x="660" y="90" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="394" y="108" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rtl7qd_di" bpmnElement="Flow_1rtl7qd">
+        <di:waypoint x="440" y="205" />
+        <di:waypoint x="440" y="280" />
+        <di:waypoint x="490" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="392" y="232" width="35" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hinohs_di" bpmnElement="Flow_1hinohs">
+        <di:waypoint x="350" y="180" />
+        <di:waypoint x="415" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fp17al_di" bpmnElement="SequenceFlow_1fp17al">
+        <di:waypoint x="178" y="180" />
+        <di:waypoint x="250" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lpzl04_di" bpmnElement="Flow_0lpzl04">
+        <di:waypoint x="590" y="280" />
+        <di:waypoint x="660" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dczfv1_di" bpmnElement="Flow_0dczfv1">
+        <di:waypoint x="760" y="90" />
+        <di:waypoint x="912" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16q15fl_di" bpmnElement="Flow_16q15fl">
+        <di:waypoint x="940" y="280" />
+        <di:waypoint x="1042" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_0lh5dja_di" bpmnElement="yeuCauDatVe">
+        <dc:Bounds x="250" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_057n7v0_di" bpmnElement="Gateway_057n7v0" isMarkerVisible="true">
+        <dc:Bounds x="415" y="155" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1u90j0d_di" bpmnElement="thongBaoThatBai">
+        <dc:Bounds x="660" y="50" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_05haw9f_di" bpmnElement="Event_05haw9f">
+        <dc:Bounds x="912" y="72" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_102yt6h_di" bpmnElement="guiYeuCauDatVe">
+        <dc:Bounds x="490" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xdl88x_di" bpmnElement="xuLyYeuCau">
+        <dc:Bounds x="660" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06qa8cw_di" bpmnElement="ketQuaDatVePhim">
+        <dc:Bounds x="840" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1pn5usl_di" bpmnElement="Event_1pn5usl">
+        <dc:Bounds x="1042" y="262" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="142" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
